@@ -134,7 +134,7 @@ def generate_multiple_choices(cleaned, output):
 
 
 if __name__ == "__main__":
-    # Please specify the paths according to your environment
+    
     output = "/dss/work/toex4699/output_markdown_pipeline"
     cleaned = f"/dss/work/toex4699/output_cleaned_markdown_pipeline"
     input = "/nfs/group/agaifh/datasets/texts_ecg"
