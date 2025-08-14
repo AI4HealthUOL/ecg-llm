@@ -150,9 +150,5 @@ Before running the evaluations, you have to specify the dataset paths and config
 
 ## Notes
 
-- Ensure sufficient GPU memory for training (recommended: 24GB+ VRAM)
-- Tensorflow is used for experiment tracking - check the runs for detailed metrics
-- All evaluation results are logged and can be compared across different model configurations
-- The system supports both local and cloud-based model inference
-- Maybe you have to specify paths, when logging, loading datasets....
+- Maybe you have to specify paths, when logging, loading datasets ect....
 
