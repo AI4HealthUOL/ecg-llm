@@ -33,9 +33,9 @@ pip install -r requirements_datageneration.txt
 ```
 submission/
 ├── datageneration/         # Data generation and preprocessing. Here, a separate requirements.txt is set
-├── finetuning/            # Model fine-tuning components
+├── finetuning/            # Model finetuning components
 ├── rag/                   # RAG implementation
-├── evaluation/           # Evaluation (multiple choices, bleu and rouge for api and local models), LLM as a judge implementation
+├── evaluation/           # Evaluation (multiple choices, bleu and rouge for api and local models), LLM-as-a-judge implementation
 ├── .env.template         # Environment variables template
 ├── requirments.txt      # Python dependencies for evaluation, rag and finetuning
 ```
