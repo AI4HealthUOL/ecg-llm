@@ -1,10 +1,3 @@
-# evaluator: deep seek? open source
-
-
-# DEEP SEEK DAS BESSERE MODEL NJUTZEN -> WARUM??? REASAONING!!!!!!!!
-
-# Prometheus is a fair judge assistant tasked with providing clear, objective feedback based on specific criteria, ensuring each assessment reflects the absolute standards set for performance.
-
 import json
 import os
 import sys

@@ -107,7 +107,7 @@ class ModelLoader:
         # pad_token_id set to token <|finetune_right_pad_id|>
         # tokenizer.pad_token_id = 128004
         # the module tranformers says eos or pad
-        # cannot use pad, than there is a cuda error!!
+        # cannot use pad, than there is a cuda error
         tokenizer.pad_token_id = 128004  # tokenizer.eos_token_id
         model = self.prepare_model(model)
         model = self.configure_training(model)
@@ -254,7 +254,6 @@ class ModelLoader:
             lambda x: self.generate_and_tokenize_multiple_choices(x, tokenizer)
         )
         val_data = val_data.shuffle().map(lambda x: self.generate_and_tokenize_prompt(x, tokenizer))
-        #  val_multiple_choices = val_multiple_choices.shuffle().map(lambda x: self.generate_and_tokenize_multiple_choices(x, tokenizer))
         evaluation_dataset = val_data.shuffle().map(lambda x: self.prepare_evaluation_dataset(x, tokenizer))
         evaluation_multiple_choices = val_multiple_choices.shuffle().map(
             lambda x: self.prepare_evaluation_multiple(x, tokenizer)
@@ -381,7 +380,6 @@ def do_training(model, tokenizer, train_data, val_data, evaluation_dataset, mult
         # remove_unused_columns=False,# all but attention_mask, lables and input ids is deleted ?
     )
 
-    # ratio smaller -> overfitting
     data_files = [
         "/dss/work/toex4699/datasets/train.jsonl",
         "/dss/work/toex4699/datasets/val.jsonl",

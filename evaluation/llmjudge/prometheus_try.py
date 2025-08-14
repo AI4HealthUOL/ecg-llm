@@ -28,7 +28,6 @@ class Prometheus:
         logger.info("Loading test data...")
         data = load_dataset("json", data_files={"test": file_path})
         test_data = data["test"]
-        #  test_data = test_data.shuffle(seed=42)
         specific_test_data = test_data
         self.existing_dict = {}
 

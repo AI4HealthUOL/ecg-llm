@@ -72,7 +72,7 @@ def token_length(text):
 
 # https://docs.llamaindex.ai/en/stable/examples/embeddings/custom_embeddings/
 class LLamaindexEmbedding(BaseEmbedding):
-    #  _model: SentenceTransformer = PrivateAttr()
+    
     def __init__(
         self,
         model_name: str,
@@ -81,8 +81,6 @@ class LLamaindexEmbedding(BaseEmbedding):
 
         super().__init__(**kwargs)
         object.__setattr__(self, "_model", SentenceTransformer(model_name))
-
-    #       self._model = SentenceTransformer("neuml/pubmedbert-base-embeddings")
 
     async def _aget_query_embedding(self, query: str) -> List[float]:
         return self._get_query_embedding(query)
@@ -128,22 +126,11 @@ class ModelEvaluator:
         pubmedbert=True,
         topk=20,
         reranking=5,
-    ):  # embedding_model="neuml/pubmedbert-base-embeddings"):
+    ):  
         logger.info("Initializing model evaluator...")
         self.is_initial_model = model_path == initial_model
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         if torch.cuda.is_available():
-            # bnb_config = BitsAndBytesConfig(
-            #     load_in_4bit=True,
-            #     bnb_4bit_use_double_quant=False,
-            #     bnb_4bit_quant_type="nf4",
-            #     bnb_4bit_compute_dtype=torch.bfloat16,
-            # )
-            # self.model = AutoModelForCausalLM.from_pretrained(
-            #     model_path,
-            #     quantization_config=bnb_config,
-            #     torch_dtype=torch.bfloat16,
-            # )
             if "70" in model_path:
                 bnb_config = BitsAndBytesConfig(
                     load_in_4bit=True,
@@ -245,11 +232,6 @@ class ModelEvaluator:
         {user_message}
         <|eot_id|>
  <|start_header_id|>assistant<|end_header_id|>""".strip()
-
-    # #         else:
-    #         return f"""<|begin_of_text|><|start_header_id|>user<|end_header_id|>
-    #  {user_message}<|eot_id|>
-    #  <|start_header_id|>assistant<|end_header_id|>""".strip()
 
     def evaluate(self, system_message=""):
         self.model.eval()

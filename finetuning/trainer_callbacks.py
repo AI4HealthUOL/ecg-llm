@@ -140,13 +140,6 @@ class Evaluation_Callback(TrainerCallback):
                 answer_text = generated_text[
                     answer_start_index + len(answer_start_token) : len(generated_text)
                 ].strip()
-                # if answer_start_token == "assistant":
-                #     # sometimes the assistant outputs some characters before the answer
-                #     answer_multiple_choices = answer_text[0].upper()
-                #     if answer_multiple_choices in ['A', 'B', 'C', 'D']:
-                #        answer_text = answer_multiple_choices
-                #     else:
-                #         answer_text = answer_text[0].upper()
 
                 answer_text = answer_text[0].upper()
                 if answer_text not in ["A", "B", "C", "D"]:
