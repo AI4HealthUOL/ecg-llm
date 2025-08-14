@@ -242,8 +242,7 @@ if __name__ == "__main__":
     logger.info(f"Evaluating model: {model_path}")
     evaluator = ModelEvaluator(model_path, initial_model, test_file)
 
-    system_message = """You are a medical AI model, specialised in the domain of electrocardiograms (ECG).
-        Answer questions accurately and follow the user's instructions. If you are unsure, indicate this."""
+    system_message = ""
     initial_results = evaluator.evaluate()
     for metric, value in initial_results.items():
         logger.info(f"{metric}: {value:.4f}")
