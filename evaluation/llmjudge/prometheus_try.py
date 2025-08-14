@@ -109,12 +109,12 @@ if __name__ == "__main__":
     logging_file = "/dss/work/toex4699/logs/PROMETHEUS.log"
     logger.add(logging_file, format="{time} {level} {message}", level="INFO")
 
-    test_file = "/dss/work/toex4699/evaluation/Prometheus_results.json"
+    test_file = "/dss/work/toex4699/training_evaluation/Prometheus_results.json"
     evaluator = Prometheus(test_file)
     results = evaluator.evaluate()
 
     # Save results to file
-    output_file = "/dss/work/toex4699/evaluation/Prometheus_results.json"
+    output_file = "/dss/work/toex4699/training_evaluation/Prometheus_results.json"
     with open(output_file, "w") as f:
         json.dump(results, f, indent=4)
     logger.info(f"\nResults saved to {output_file}")
