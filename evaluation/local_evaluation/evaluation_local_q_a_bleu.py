@@ -242,7 +242,6 @@ if __name__ == "__main__":
     logger.info(f"Evaluating model: {model_path}")
     evaluator = ModelEvaluator(model_path, initial_model, test_file)
 
-    logger.info("Evaluation with system message")
     system_message = """You are a medical AI model, specialised in the domain of electrocardiograms (ECG).
         Answer questions accurately and follow the user's instructions. If you are unsure, indicate this."""
     initial_results = evaluator.evaluate()
