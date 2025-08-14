@@ -121,7 +121,7 @@ python evaluation/api_evaluation/evaluation_q_a.py \
 ### LLM-as-a-Judge Evaluation
 
 Uses LLM as a judge framework for evaluation of correctness. The prompt is based on https://arxiv.org/abs/2405.01535
-The LLM as a judge loads Deepseak from openrouter
+The LLM as a judge loads Deepseek from openrouter
 ```bash
 python evaluation/llmjudge/prometheus_try.py
 ```
