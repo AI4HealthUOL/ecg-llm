@@ -80,7 +80,7 @@ class Evaluation_Callback(TrainerCallback):
         if state.global_step % self.config.custom_eval_steps == 0:
             model.eval()
 
-            # Use model.generate to generate predictions
+            
             generation_config = transformers.GenerationConfig(
                 max_new_tokens=200,
                 temperature=0.1,
@@ -151,7 +151,6 @@ class Evaluation_Callback(TrainerCallback):
                         answer_text = "C"
                     elif answer_text == "4":
                         answer_text = "D"
-                # Check if the generated answer is correct
                 correct_answer = data_point["answer"]
                 if correct_answer == answer_text:
                     correct += 1

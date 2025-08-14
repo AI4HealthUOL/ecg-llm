@@ -9,8 +9,7 @@ This folder contains the complete implementation for the master thesis project o
 
 - Python 3.10
 - CUDA-compatible GPU (for training and inference)
-- Access to Hugging Face Hub
-- Access to Hugging Face Pro when
+- Access to Hugging Face
 - API keys for OpenRouter and LiteLLM for evaluation
 
 ### Installation
@@ -122,7 +121,7 @@ python evaluation/api_evaluation/evaluation_q_a.py \
 ### LLM-as-a-Judge Evaluation
 
 Uses LLM as a judge framework for evaluation of correctness. The prompt is based on https://arxiv.org/abs/2405.01535
-The LLM as a judge loads Deepseak from openrouter
+The LLM as a judge loads Deepseek from openrouter
 ```bash
 python evaluation/llmjudge/prometheus_try.py
 ```
