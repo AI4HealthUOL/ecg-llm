@@ -234,7 +234,7 @@ if __name__ == "__main__":
     model_path = args.model
     initial_model = args.initial_model
 
-    test_file = "/dss/work/toex4699/datasets/data_with_chatgpt/bigger_test.jsonl"
+    test_file = "/dss/work/toex4699/datasets/bigger_test.jsonl"
 
     logging_file = "/dss/work/toex4699/logs/evaluate_qa_local.log"
     logger.add(logging_file, format="{time} {level} {message}", level="INFO")

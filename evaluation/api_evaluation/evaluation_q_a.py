@@ -170,7 +170,7 @@ if __name__ == "__main__":
 
     model_path = args.model
 
-    test_file = "/dss/work/toex4699/datasets/data_with_chatgpt/bigger_test.jsonl"
+    test_file = "/dss/work/toex4699/datasets/bigger_test.jsonl"
 
     logger.info(f"Evaluating model: {model_path}")
     evaluator = ModelEvaluator(model_path, test_file)

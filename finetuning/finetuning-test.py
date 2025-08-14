@@ -244,7 +244,7 @@ class ModelLoader:
         )
         train_multiple_choices = train_multiple_choices.shuffle()
 
-        train_data, test_data, val_data = get_bigger_dataset("/dss/work/toex4699/datasets/data_with_chatgpt/")
+        train_data, test_data, val_data = get_bigger_dataset("/dss/work/toex4699/datasets/")
 
         print(train_data)
         # Tokenize the datasets

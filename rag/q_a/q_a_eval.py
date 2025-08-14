@@ -416,14 +416,3 @@ if __name__ == "__main__":
     for metric, value in initial_results.items():
         logger.info(f"{metric}: {value:.4f}")
 
-    logger.info("Evaluation Haverkamps testset: ")
-    evaluator._load_test_data("/dss/work/toex4699/datasets/haverkamp_evaluation/chat_gpt_pairs.json")
-    initial_results = evaluator.evaluate(system_message)
-    for metric, value in initial_results.items():
-        logger.info(f"{metric}: {value:.4f}")
-
-    logger.info("Evaluation special questions ")
-    evaluator._load_test_data("/dss/work/toex4699/datasets/specific_dataset/specific_test.jsonl")
-    initial_results = evaluator.evaluate(system_message)
-    for metric, value in initial_results.items():
-        logger.info(f"{metric}: {value:.4f}")

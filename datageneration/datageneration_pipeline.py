@@ -7,7 +7,7 @@ from multiple_choice_generator import MultipleChoiceGenerator
 from q_a_generator import QAGenerator
 
 from data_preparation.clean_markdown import MarkdownCleaner
-from data_preparation.pdf_to_markdown import PDFToMarkdownGenerator
+#from data_preparation.pdf_to_markdown import PDFToMarkdownGenerator
 from utils.processor import Processor
 
 load_dotenv()
@@ -141,7 +141,7 @@ if __name__ == "__main__":
     qa_pairs_folder = "/dss/work/toex4699/english_datasets/q_a_pairs"
     multiple_choices_folder = "/dss/work/toex4699/english_datasets/multiple_choices"
 
-    create_markdowns(input, output)
-    clean_markdown(output, cleaned)
+  #  create_markdowns(input, output)
+   # clean_markdown(output, cleaned)
     generate_qa_pairs(cleaned, qa_pairs_folder)
     generate_multiple_choices(cleaned, multiple_choices_folder)
