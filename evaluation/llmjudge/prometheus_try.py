@@ -41,7 +41,7 @@ class Prometheus:
     def _init_prometheus_evaluator(self):
         api_token = os.environ.get(
             "OPEN_ROUTER_TOKEN_Uni"
-        )  #'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'
+        )  
         evaluator = PrometheusEvaluator(
             api_token,
             logger,
