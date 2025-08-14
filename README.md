@@ -9,8 +9,7 @@ This folder contains the complete implementation for the master thesis project o
 
 - Python 3.10
 - CUDA-compatible GPU (for training and inference)
-- Access to Hugging Face Hub
-- Access to Hugging Face Pro when
+- Access to Hugging Face
 - API keys for OpenRouter and LiteLLM for evaluation
 
 ### Installation
