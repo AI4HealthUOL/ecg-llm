@@ -6,8 +6,7 @@ from dotenv import load_dotenv
 from huggingface_hub import InferenceClient
 from json_repair import repair_json
 from langchain.schema import AIMessage, HumanMessage, SystemMessage
-from langchain_core.utils import convert_to_secret_str
-from langchain_openai import ChatOpenAI
+
 from pydantic import BaseModel
 
 load_dotenv()
@@ -30,15 +29,7 @@ class Generator:
                 self.client = InferenceClient(model=model, token=api_token, timeout=600, provider="together")
             else:
                 self.client = InferenceClient(model=model, token=api_token, timeout=600)
-        else:
-            self.client = ChatOpenAI(
-                model=model,
-                base_url=os.getenv("LITELLM_URL"),
-                api_key=convert_to_secret_str(os.getenv("LITELLM_KEY")),
-                timeout=600,
-                temperature=0.1,
-                max_tokens=50000,
-            )
+        
         self.logger = logger
         self.tokencount_limit = tokencount_limit
         self.processing_content = processing_content
