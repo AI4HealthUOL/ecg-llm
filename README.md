@@ -1,6 +1,6 @@
 # ECG LLM
 
-This folder contains the complete implementation for the master thesis project on fine-tuning large language models for medical question-answering tasks. The project includes data generation, model fine-tuning, RAG (Retrieval-Augmented Generation) implementation, and comprehensive evaluation frameworks.
+This folder contains the complete implementation for the official code repository associated with the paper "ECG-LLM – training and evaluation of domain-specific large language models for electrocardiography" on fine-tuning large language models for medical question-answering tasks. The project includes data generation, model fine-tuning, RAG (Retrieval-Augmented Generation) implementation, and comprehensive evaluation frameworks.
 
 
 ## Setup
