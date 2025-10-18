@@ -40,37 +40,12 @@ class CustomTrainingArguments:
     eval_steps: int = 500
     save_steps: int = 1000
     output_dir: str = (
-        f"/dss/work/toex4699/training_output_multiple_choices/{datetime.now().strftime('%Y%m%d')}_r_128_a_256_8B"
+        f"/training_output_multiple_choices/{datetime.now().strftime('%Y%m%d')}_r_128_a_256_8B"
     )
     max_steps: int = -1
     max_grad_norm: float = 0.3
     optim: str = "paged_adamw_32bit"  # "adamw_8bit" #paged_adamw_32bit
     lr_scheduler_type: str = "cosine"
-    warmup_ratio: float = 0.01
-    report_to = ["tensorboard", "mlflow"]
-
-
-# ONLY TESTING HERE
-@dataclass
-class TestingTrainingArguments:
-    per_device_train_batch_size: int = 4
-    per_device_eval_batch_size: int = 4
-    gradient_accumulation_steps: int = 2
-    evaluation_strategy: str = "steps"
-    do_train: bool = True
-    do_eval: bool = True
-    num_train_epochs: int = 3
-    learning_rate: float = 2e-4
-    fp16: bool = True
-    save_total_limit: int = 3
-    logging_steps: int = 1
-    eval_steps: int = 10
-    save_steps: int = 100
-    output_dir: str = f"/dss/work/toex4699/tests/{datetime.now().strftime('%Y%m%d_%H%M%S')}"
-    max_steps: int = 10
-    max_grad_norm: float = 0.3
-    optim: str = "paged_adamw_32bit"  # "adamw_8bit" #paged_adamw_32bit
-    lr_scheduler_type: str = "linear"
     warmup_ratio: float = 0.01
     report_to = ["tensorboard", "mlflow"]
 

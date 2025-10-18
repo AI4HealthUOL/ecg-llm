@@ -162,7 +162,7 @@ class ModelEvaluator:
 
 
 if __name__ == "__main__":
-    logging_file = "/dss/work/toex4699/logs/evaluate_q_a.log"
+    logging_file = "/logs/evaluate_q_a.log"
     logger.add(logging_file, format="{time} {level} {message}", level="INFO")
     parser = argparse.ArgumentParser(description="Evaluate a fine-tuned model.")
     parser.add_argument("--model", type=str, required=True, help="The model path or name.")
@@ -170,11 +170,11 @@ if __name__ == "__main__":
 
     model_path = args.model
 
-    test_file = "/dss/work/toex4699/datasets/bigger_test.jsonl"
+    test_file = "/datasets/test.jsonl"
 
     logger.info(f"Evaluating model: {model_path}")
     evaluator = ModelEvaluator(model_path, test_file)
     initial_results = evaluator.evaluate()
-    logger.info(" Model Results:")
+    logger.info("Model Results:")
     for metric, value in initial_results.items():
         logger.info(f"{metric}: {value:.4f}")

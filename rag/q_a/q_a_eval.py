@@ -389,15 +389,15 @@ class ModelEvaluator:
 
 if __name__ == "__main__":
 
-    db_path = "/dss/work/toex4699/chroma_db_master_thesis_pubmedbert_recursive_reranking"
+    db_path = "/chroma_db_master_thesis_pubmedbert_recursive_reranking"
     model_path = "meta-llama/Llama-3.1-8B-Instruct"
     initial_model = "meta-llama/Llama-3.1-8B-Instruct"
     top_k = 20
     reranking = 5
     collection_name = "ecg_haverkamps_markdowns"
-    test_file = "/dss/work/toex4699/datasets/bigger_test.jsonl"
+    test_file = "/datasets/bigger_test.jsonl"
 
-    logging_file = "/dss/work/toex4699/logs/evaluate_qa_local.log"
+    logging_file = "/logs/evaluate_qa_local.log"
     logger.add(logging_file, format="{time} {level} {message}", level="INFO")
 
     logger.info(f"Evaluating model: {model_path}")

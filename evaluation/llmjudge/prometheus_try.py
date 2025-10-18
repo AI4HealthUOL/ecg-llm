@@ -40,7 +40,7 @@ class Prometheus:
 
     def _init_prometheus_evaluator(self):
         api_token = os.environ.get(
-            "OPEN_ROUTER_TOKEN_Uni"
+            "OPEN_ROUTER_TOKEN"
         )  
         evaluator = PrometheusEvaluator(
             api_token,
@@ -106,15 +106,15 @@ class Prometheus:
 
 
 if __name__ == "__main__":
-    logging_file = "/dss/work/toex4699/logs/PROMETHEUS.log"
+    logging_file = "/logs/PROMETHEUS.log"
     logger.add(logging_file, format="{time} {level} {message}", level="INFO")
 
-    test_file = "/dss/work/toex4699/training_evaluation/Prometheus_results.json"
+    test_file = "/training_evaluation/Prometheus_results.json"
     evaluator = Prometheus(test_file)
     results = evaluator.evaluate()
 
     # Save results to file
-    output_file = "/dss/work/toex4699/training_evaluation/Prometheus_results.json"
+    output_file = "/training_evaluation/Prometheus_results.json"
     with open(output_file, "w") as f:
         json.dump(results, f, indent=4)
     logger.info(f"\nResults saved to {output_file}")

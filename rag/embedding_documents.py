@@ -63,7 +63,7 @@ def token_length(text):
 def create_chroma_collection_pubmedBert_recursive_splitting(DB_PATH, FOLDER_PATH, collection_name):
 
     logger.add(
-        "/dss/work/toex4699/logs/recursive_splitting_ecg.log", format="{time} {level} {message}", level="INFO"
+        "/logs/recursive_splitting_ecg.log", format="{time} {level} {message}", level="INFO"
     )
     client = chromadb.PersistentClient(path=DB_PATH)
 
@@ -105,9 +105,9 @@ def create_chroma_collection_pubmedBert_recursive_splitting(DB_PATH, FOLDER_PATH
 
 
 if __name__ == "__main__":
-    FOLDER_PATH = "/dss/work/toex4699/output_cleaned_markdown_pipeline"
-    DB_PATH = "/dss/work/toex4699/chroma_db_master_thesis_pubmedbert_recursive_reranking"
+    FOLDER_PATH = "/output_cleaned_markdown_pipeline"
+    DB_PATH = "/chroma_db_master_thesis_pubmedbert_recursive_reranking"
     logger.add(
-        "/dss/work/toex4699/logs/markdown_splitting_ecg.log", format="{time} {level} {message}", level="INFO"
+        "/logs/markdown_splitting_ecg.log", format="{time} {level} {message}", level="INFO"
     )
     create_chroma_collection_pubmedBert_recursive_splitting(DB_PATH, FOLDER_PATH, "ecg_haverkamps_markdowns")

@@ -105,7 +105,7 @@ class RAGMultipleChoiceEvaluator:
         top_k=20,
         reranking=5,
     ):
-        logger.add("/dss/work/toex4699/logs/rag_evaluation.log", format="{time} {level} {message}", level="INFO")
+        logger.add("/logs/rag_evaluation.log", format="{time} {level} {message}", level="INFO")
         logger.info("Initializing RAG model evaluator...")
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         if torch.cuda.is_available():
@@ -365,14 +365,14 @@ def evaluate_all_datasets(evaluator, multiple_data, system_message):
 
 
 if __name__ == "__main__":
-    FOLDER_PATH = "/dss/work/toex4699/output_cleaned_markdown_pipeline"
-    DB_PATH = "/dss/work/toex4699/chroma_db_master_thesis_pubmedbert_recursive_reranking"
+    FOLDER_PATH = "/output_cleaned_markdown_pipeline"
+    DB_PATH = "/chroma_db_master_thesis_pubmedbert_recursive_reranking"
     model_path = "meta-llama/Llama-3.1-8B-Instruct"
     initial_model = "meta-llama/Llama-3.1-8B-Instruct"
     top_k = 20
     reranking = 5
     logger.add(
-        "/dss/work/toex4699/logs/markdown_splitting_ecg.log", format="{time} {level} {message}", level="INFO"
+        "/logs/markdown_splitting_ecg.log", format="{time} {level} {message}", level="INFO"
     )
     client = chromadb.PersistentClient(path=DB_PATH)
 
@@ -384,34 +384,25 @@ if __name__ == "__main__":
     )
 
     logger.info("Evaluating Multiple Choices on special ...")
-    special_train = "/dss/work/toex4699/datasets/specific_dataset/train_multiple_choice.jsonl"
-    special_test = "/dss/work/toex4699/datasets/specific_dataset/test_multiple_choice.jsonl"
-    special_val = "/dss/work/toex4699/datasets/specific_dataset/val_multiple_choice.jsonl"
+    special = "/datasets/specific_dataset/special_multiple_choice.jsonl"
 
     multiple_data = load_dataset(
-        "json", data_files={"train": special_train, "test": special_test, "val": special_val}
+        "json", data_files={"special": special}
     )
     system_message = ""
     all_results = evaluate_all_datasets(evaluator, multiple_data, system_message)
 
     logger.info("Evaluating Multiple Choices on whole ...")
-    mc_file = "/dss/work/toex4699/datasets/test_multiple_choice.jsonl"
-    mc_file_val = "/dss/work/toex4699/datasets/val_multiple_choice.jsonl"
-    mc_file_more = "/dss/work/toex4699/datasets/old_train_new_test_multiple_choices.jsonl"
+    mc_file = "/datasets/multiple_choice.jsonl"
 
     multiple_data = load_dataset(
-        "json", data_files={"test": mc_file, "old_train": mc_file_more, "val": mc_file_val}
+        "json", data_files={"multiple_choice": mc_file}
     )
     system_message = ""
     all_results = evaluate_all_datasets(evaluator, multiple_data, system_message)
-    haverkamp = "/dss/work/toex4699/datasets/haverkamp_evaluation/haverkamp_multiple_choices.jsonl"
+    haverkamp = "/datasets/haverkamp_evaluation/haverkamp_multiple_choices.jsonl"
 
     logger.info("Evaluating Multiple Choices on haverkamp ...")
 
     multiple_data = load_dataset("json", data_files={"haverkamp": haverkamp})
-    all_results = evaluate_all_datasets(evaluator, multiple_data, system_message)
-    logger.info("Evaluating Multiple Choices on english ...")
-    # Load datasets
-    mc_file_english = "/dss/work/toex4699/datasets/multiple_choices_english/formated_english_multiple_choices.jsonl"
-    multiple_data = load_dataset("json", data_files={"english_file": mc_file_english})
     all_results = evaluate_all_datasets(evaluator, multiple_data, system_message)

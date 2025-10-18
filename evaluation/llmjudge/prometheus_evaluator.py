@@ -21,7 +21,7 @@ class EvaluationRankingCorrected(BaseModel):
     ranking: List[str] = Field(
         description="The ranking of the answers from best to worst, using the letters A, B, C, D, E, F, G, H, I, J, K, L. The ranking should be based on the quality of the responses and the feedback provided."
     )
-    style: List[int] = Field(description="The ranking of the style of the answers A, B, C, D, E, F, G, H.")
+    style: List[int] = Field(description="The ranking of the style of the answers A, B, C, D, E, F, G, H, I, J, K, L.")
     correctness_responses: List[bool] = Field(
         description="The correctness of the answers A, B, C, D, E, F, G, H, I, J, K, L. The correctness is based on the reference answer and the context."
     )
@@ -41,16 +41,8 @@ class PrometheusEvaluator:
         model: str = "",
         score_rubric: str = "0,1,2,3,4,5,6,7,8,9,10",
     ):
-        # super().__init__(api_token, logger, processing_content, output_folder, tokencount_limit,model)
         self.parser = PydanticOutputParser(pydantic_object=EvaluationRankingCorrected)
         self.score_rubric = score_rubric
-        # Huggingface Pro
-        # self.client = InferenceClient(
-        #         model=model,
-        #         token=api_token,
-        #         timeout=600,
-        #         provider="together"
-        #     )
         self.logger = logger
 
         self.client = OpenAI(
@@ -59,7 +51,6 @@ class PrometheusEvaluator:
         )
 
     def remove_think_tags(self, text):
-        # Use regular expression to remove <think>...</think> tags and their content
         cleaned_text = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
         return cleaned_text.strip()
 
@@ -151,7 +142,7 @@ closing, and explanations. Just output JSON following the instruction given by t
             response_L,
             context,
         )
-        parser = PydanticOutputParser(pydantic_object=EvaluationRankingCorrectedHaverkamp)
+        parser = PydanticOutputParser(pydantic_object=EvaluationRankingCorrected)
 
         user_message = f"""
 It is very important to answer with json.
@@ -196,7 +187,7 @@ It is very important to answer with json.
                 return 0, 0
 
         try:
-            markdown_folder = "/dss/work/toex4699/output_cleaned_markdown_pipeline"
+            markdown_folder = "/output_cleaned_markdown_pipeline"
             markdown_file = qa_file_name.replace("qa_pairs_", "").replace(".json", "")
             markdown_start_line, markdown_end_line = extract_line_numbers(markdown_lines)
             self.logger.info(f"Markdownfolder: {markdown_folder}")
@@ -216,7 +207,7 @@ It is very important to answer with json.
             return ""
 
 
-def evaluate_with_prometheus(logger, question, response, reference_answer, context) -> Evaluation:
+def evaluate_with_prometheus(logger, question, response, reference_answer, context) -> EvaluationRankingCorrected:
     # huggingface
     api_token = os.environ.get("HF_API_TOKEN")
     # openrouter
@@ -228,7 +219,7 @@ def evaluate_with_prometheus(logger, question, response, reference_answer, conte
         api_token,
         logger,
         model="deepseek-ai/DeepSeek-R1",
-        output_folder="/dss/work/toex4699/evaluation/prometheus",
+        output_folder="/evaluation/prometheus",
         score_rubric="0, 1, 2, 3, 4, 5",
         tokencount_limit=4000,
         processing_content="evaluation",

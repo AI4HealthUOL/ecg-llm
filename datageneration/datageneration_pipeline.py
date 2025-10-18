@@ -15,14 +15,14 @@ load_dotenv()
 
 def create_markdowns(input, output):
     # Process articles
-    logging_file_markdown_generator = "/dss/work/toex4699/data_preparation/generate_markdown.log"
+    logging_file_markdown_generator = "/data_preparation/generate_markdown.log"
     logger.add(logging_file_markdown_generator, format="{time} {level} {message}", level="INFO")
     generator = PDFToMarkdownGenerator(logger, logging_file_markdown_generator)
     generator.process_directory(input, output)
 
 
 def clean_markdown(input, cleaned):
-    logging_file = "/dss/work/toex4699/data_preparation/clean_markdown.log"
+    logging_file = "/data_preparation/clean_markdown.log"
     logger.add(logging_file, format="{time} {level} {message}", level="INFO")
     section_titles = [
         "References",
@@ -106,7 +106,7 @@ def clean_markdown(input, cleaned):
 
 
 def generate_qa_pairs(cleaned, output):
-    logging_file = "/dss/work/toex4699/english_datasets/generate_qa.log"
+    logging_file = "/english_datasets/generate_qa.log"
     logger.add(logging_file, format="{time} {level} {message}", level="INFO")
     api_token = os.environ.get("HF_TOKEN")
     if not api_token:
@@ -120,7 +120,7 @@ def generate_qa_pairs(cleaned, output):
 
 
 def generate_multiple_choices(cleaned, output):
-    logging_file = "/dss/work/toex4699/english_datasets/generate_multiple_choices.log"
+    logging_file = "/english_datasets/generate_multiple_choices.log"
     logger.add(logging_file, format="{time} {level} {message}", level="INFO")
     api_token = os.environ.get("HF_TOKEN")
     if not api_token:
@@ -134,14 +134,14 @@ def generate_multiple_choices(cleaned, output):
 
 
 if __name__ == "__main__":
-    
-    output = "/dss/work/toex4699/output_markdown_pipeline"
-    cleaned = f"/dss/work/toex4699/output_cleaned_markdown_pipeline"
-    input = "/nfs/group/agaifh/datasets/texts_ecg"
-    qa_pairs_folder = "/dss/work/toex4699/english_datasets/q_a_pairs"
-    multiple_choices_folder = "/dss/work/toex4699/english_datasets/multiple_choices"
 
-  #  create_markdowns(input, output)
-   # clean_markdown(output, cleaned)
+    output = "/output_markdown_pipeline"
+    cleaned = f"/output_cleaned_markdown_pipeline"
+    input = "/nfs/group/agaifh/datasets/texts_ecg"
+    qa_pairs_folder = "/english_datasets/q_a_pairs"
+    multiple_choices_folder = "/english_datasets/multiple_choices"
+
+    create_markdowns(input, output)
+    clean_markdown(output, cleaned)
     generate_qa_pairs(cleaned, qa_pairs_folder)
     generate_multiple_choices(cleaned, multiple_choices_folder)

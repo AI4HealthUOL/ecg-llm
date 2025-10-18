@@ -13,7 +13,7 @@ from transformers import TrainerCallback
 
 class Evaluation_Callback(TrainerCallback):
     def __init__(self, data_files: list, script_path: str, tokenizer, evaluation_dataset, multiple_dataset):
-        mlflow_dir = "/dss/work/toex4699/mlflowlogs"
+        mlflow_dir = "/mlflowlogs"
         os.makedirs(mlflow_dir, exist_ok=True)
         mlflow.set_tracking_uri(f"file://{mlflow_dir}")
         experiment_name = "finetuning_experiment"

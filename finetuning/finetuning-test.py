@@ -240,11 +240,11 @@ class ModelLoader:
 
     def load_data(self, data_path: str, tokenizer):
         train_multiple_choices, val_multiple_choices = get_multiple_choices_specific_train(
-            "/dss/work/toex4699/datasets"
+            "/datasets"
         )
         train_multiple_choices = train_multiple_choices.shuffle()
 
-        train_data, test_data, val_data = get_bigger_dataset("/dss/work/toex4699/datasets/")
+        train_data, test_data, val_data = get_bigger_dataset("/datasets/")
 
         print(train_data)
         # Tokenize the datasets
@@ -381,9 +381,9 @@ def do_training(model, tokenizer, train_data, val_data, evaluation_dataset, mult
     )
 
     data_files = [
-        "/dss/work/toex4699/datasets/train.jsonl",
-        "/dss/work/toex4699/datasets/val.jsonl",
-        "/dss/work/toex4699/datasets/test.jsonl",
+        "/datasets/train.jsonl",
+        "/datasets/val.jsonl",
+        "/datasets/test.jsonl",
         "/user/toex4699/master_thesis/finetuning/config.py",
         "/user/toex4699/master_thesis/finetuning/trainer_callbacks.py",
     ]
@@ -412,4 +412,4 @@ def do_training(model, tokenizer, train_data, val_data, evaluation_dataset, mult
 if __name__ == "__main__":
     test_cuda_available()
     config = Config()
-    training(config.model, config.tokenizer_name, "/dss/work/toex4699/datasets/dataset_with_context_q_a.jsonl")
+    training(config.model, config.tokenizer_name, "/datasets/dataset_with_context_q_a.jsonl")

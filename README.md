@@ -66,13 +66,13 @@ python finetuning/finetuning-test.py
 
 In the RAG implementation, there is the Q&A Evaluation and the multiple choices evaluation for the rag model. To run the RAG, first, the documents should be embedded (embedding_documents.py). Therefore, pubmedbert embedding and recursive splitting is used. Then, the corresponding files could be run. Therefore, you can specifiy different parameters in the files:
 
-  -  db_path = "/dss/work/toex4699/chroma_db_master_thesis_pubmedbert_recursive_reranking" # dbpath of the vector database
+  -  db_path = "/chroma_db_master_thesis_pubmedbert_recursive_reranking" # dbpath of the vector database
   -  model_path = "meta-llama/Llama-3.1-8B-Instruct" # model path (llama 3.1 8b ist used here)
   -  initial_model = "meta-llama/Llama-3.1-8B-Instruct" # initial model for tokenizer settings
   -  top_k = 20 # rag-parameter. This is used in the master thesis
    - reranking = 5 # reranking parameter. This is used in the master thesis
 - collection_name = "ecg_haverkamps_markdowns" # collection name
-- test_file = "/dss/work/toex4699/datasets/data_with_chatgpt/bigger_test.jsonl" # test datafile
+- test_file = "/datasets/data_with_chatgpt/bigger_test.jsonl" # test datafile
 
 
 ## Evaluation

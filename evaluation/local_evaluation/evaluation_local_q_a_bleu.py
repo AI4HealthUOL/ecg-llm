@@ -226,7 +226,7 @@ class ModelEvaluator:
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description="Evaluate a fine-tuned model.")
+    parser = argparse.ArgumentParser(description="Evaluate a model.")
     parser.add_argument("--model", type=str, required=True, help="The model path or name.")
     parser.add_argument("--initial_model", type=str, required=True, help="The initial model")
     args = parser.parse_args()
@@ -234,9 +234,9 @@ if __name__ == "__main__":
     model_path = args.model
     initial_model = args.initial_model
 
-    test_file = "/dss/work/toex4699/datasets/bigger_test.jsonl"
+    test_file = "/datasets/bigger_test.jsonl"
 
-    logging_file = "/dss/work/toex4699/logs/evaluate_qa_local.log"
+    logging_file = "/logs/evaluate_qa_local.log"
     logger.add(logging_file, format="{time} {level} {message}", level="INFO")
 
     logger.info(f"Evaluating model: {model_path}")

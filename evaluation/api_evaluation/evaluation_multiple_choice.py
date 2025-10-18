@@ -106,7 +106,7 @@ def evaluate_all_datasets(evaluator, multiple_data):
 
 if __name__ == "__main__":
     load_dotenv()
-    logging_file = "/dss/work/toex4699/logs/evaluate_multiple_choice_haverkamp.log"
+    logging_file = "/logs/evaluate_multiple_choice.log"
     logger.add(logging_file, format="{time} {level} {message}", level="INFO")
     parser = argparse.ArgumentParser(description="Evaluate a fine-tuned model.")
     parser.add_argument("--model", type=str, required=True, help="The model path or name.")
@@ -120,34 +120,24 @@ if __name__ == "__main__":
     logger.info("Prepare Multiple Choice evaluation...")
 
     logger.info("Running Multiple Choice evaluation on special data...")
-    special_train = "/dss/work/toex4699/datasets/specific_dataset/train_multiple_choice.jsonl"
-    special_test = "/dss/work/toex4699/datasets/specific_dataset/test_multiple_choice.jsonl"
-    special_val = "/dss/work/toex4699/datasets/specific_dataset/val_multiple_choice.jsonl"
+    special = "/datasets/specific_dataset/special_multiple_choice.jsonl"
 
     multiple_data = load_dataset(
-        "json", data_files={"train": special_train, "test": special_test, "val": special_val}
+        "json", data_files={"special": special}
     )
 
     all_results = evaluate_all_datasets(evaluator, multiple_data)
     logger.info("Use whole Multiple Choices...")
-    mc_file = "/dss/work/toex4699/datasets/test_multiple_choice.jsonl"
-    mc_file_val = "/dss/work/toex4699/datasets/val_multiple_choice.jsonl"
-    mc_file_more = "/dss/work/toex4699/datasets/old_train_new_test_multiple_choices.jsonl"
+    mc_file = "/datasets/all_multiple_choice.jsonl"
 
     multiple_data = load_dataset(
-        "json", data_files={"test": mc_file, "old_train": mc_file_more, "val": mc_file_val}
+        "json", data_files={"whole": mc_file}
     )
 
     all_results = evaluate_all_datasets(evaluator, multiple_data)
-    haverkamp = "/dss/work/toex4699/datasets/haverkamp_evaluation/haverkamp_multiple_choices.jsonl"
+    haverkamp = "/datasets/haverkamp_evaluation/haverkamp_multiple_choices.jsonl"
 
     logger.info("Evaluate Haverkamps now...")
 
     multiple_data = load_dataset("json", data_files={"haverkamp": haverkamp})
-    all_results = evaluate_all_datasets(evaluator, multiple_data)
-    logger.info("Use english Multiple Choices...")
-
-    mc_file_english = "/dss/work/toex4699/datasets/multiple_choices_english/formated_english_multiple_choices.jsonl"
-    multiple_data = load_dataset("json", data_files={"english_file": mc_file_english})
-
     all_results = evaluate_all_datasets(evaluator, multiple_data)
